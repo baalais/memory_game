@@ -1,0 +1,53 @@
+/* ProfileSettings.css */
+
+.ProfileSettings {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ProfileSettings h2 {
+    margin-bottom: 30px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .ProfileSettings input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  .ProfileSettings .invalid {
+    border-color: red;
+  }
+  
+  .ProfileSettings button {
+    display: block;
+    width: 100%;
+    padding: 14px 28px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ProfileSettings button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .ProfileSettings button:hover {
+    background-color: #0056b3;
+  }
+  
