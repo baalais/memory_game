@@ -22,44 +22,59 @@ function MemoryGame() {
 
   const generateCards = () => {
     const faces = ['🍎', '🍌', '🍒', '🍇', '🍓', '🍍', '🍑', '🍉', '🍏', '🍆'];
-    const numCards = level * 2; // Increase the number of cards with each level
-    const duplicatedFaces = [...faces, ...faces.slice(0, numCards - faces.length)];
+    const numPairs = level; // Number of pairs is equal to the level
+    const duplicatedFaces = [];
+    
+    // Duplicate each face to create pairs
+    for (let i = 0; i < numPairs; i++) {
+      duplicatedFaces.push(faces[i % faces.length]);
+      duplicatedFaces.push(faces[i % faces.length]);
+    }
+    
     const shuffledFaces = duplicatedFaces.sort(() => Math.random() - 0.5);
     setCards(shuffledFaces);
-    setFlipped(Array(numCards).fill(false)); // Initialize flipped state for each card
+    setFlipped(Array(numPairs * 2).fill(false)); // Initialize flipped state for each card
     setDisabled(false); // Enable card clicking
     setHasStarted(true); // Start the game
   };
+  
 
   const handleCardClick = (index) => {
-    if (disabled || solved.includes(index)) return; // Ignore clicks on disabled or solved cards
-    
-    // Toggle the flipped state of the clicked card
+    if (disabled || solved.includes(index)) return;
+  
     const newFlipped = [...flipped];
     newFlipped[index] = !newFlipped[index];
     setFlipped(newFlipped);
   
-    // Check for matching cards if two cards are flipped
-    if (newFlipped.filter((isFlipped) => isFlipped).length === 2) {
-      setDisabled(true); // Disable clicking until the check is complete
-      const [firstIndex, secondIndex] = newFlipped.reduce((acc, isFlipped, idx) => {
-        if (isFlipped) acc.push(idx);
-        return acc;
-      }, []);
+    const flippedIndices = newFlipped.reduce((acc, isFlipped, idx) => {
+      if (isFlipped) acc.push(idx);
+      return acc;
+    }, []);
+  
+    if (flippedIndices.length === 2) {
+      setDisabled(true);
+  
+      const [firstIndex, secondIndex] = flippedIndices;
       if (cards[firstIndex] === cards[secondIndex]) {
-        // If the cards match, mark them as solved
+        // If the cards match, mark them as solved and increment points
         setSolved([...solved, firstIndex, secondIndex]);
-        setFlipped(Array(cards.length).fill(false)); // Reset flipped cards
-        setDisabled(false); // Re-enable clicking
+        setPoints(points + 1); // Increment points
+        setFlipped(Array(cards.length).fill(false));
+        setDisabled(false);
       } else {
         setTimeout(() => {
           // Reset the flipped state after a delay
-          setFlipped(Array(cards.length).fill(false));
-          setDisabled(false); // Re-enable clicking
+          const resetFlipped = [...newFlipped];
+          resetFlipped[firstIndex] = false;
+          resetFlipped[secondIndex] = false;
+          setFlipped(resetFlipped);
+          setDisabled(false);
         }, 1000);
       }
     }
   };
+  
+  
 
   const goToNextLevel = () => {
     setLevel((prevLevel) => prevLevel + 1); // Increment the level
@@ -75,21 +90,21 @@ function MemoryGame() {
   };
 
   return (
-    <div className={style.MemoryGame}>
-      <div className={style['game-info']}>
+    <div className={'MemoryGame'}>
+      <div className={'gameInfo'}>
         <div>Level: {level}</div>
         <div>Points: {points}</div>
       </div>
-      <div className={style.cards}>
+      <div className={'cards'}>
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`${style.card} ${flipped[index] || solved.includes(index) ? style.flipped : ''}`}
+            className={`card ${flipped[index] || solved.includes(index) ? 'flipped' : ''}`}
             onClick={() => handleCardClick(index)}
           >
-            <div className={style['card-inner']}>
-              <div className={style['card-front']}>?</div>
-              <div className={style['card-back']}>{flipped[index] || solved.includes(index) ? card : '?'}</div>
+            <div className={'card-inner'}>
+              <div className={'card-front'}>?</div>
+              <div className={'card-back'}>{flipped[index] || solved.includes(index) ? card : '?'}</div>
             </div>
           </div>
         ))}
@@ -99,5 +114,8 @@ function MemoryGame() {
   
   
 }
+  
+  
+
 
 export default MemoryGame;

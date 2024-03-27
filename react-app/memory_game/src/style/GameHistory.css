@@ -1,0 +1,26 @@
+.GameHistory {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .GameHistory h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .GameHistory ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .GameHistory li {
+    margin-bottom: 10px;
+  }
+  
+  .GameHistory li strong {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
