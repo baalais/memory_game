@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import style from '../style/MemoryGame.css'; // Import CSS module for card styles
+import styles from '../style/MemoryGame.css'; // Import CSS module for card styles
 
 function MemoryGame() {
   const [cards, setCards] = useState([]);
