@@ -1,14 +1,15 @@
-// ColorPage.jsx
-
 import React, { useState } from 'react';
 import '../style/ColorPage.css';
 
 const ColorPage = () => {
-  const [backgroundColor, setBackgroundColor] = useState('#ffffff'); // Sākuma fona krāsa - balta
-  
-  // Funkcija, kas maina fona krāsu
+  const [backgroundColor, setBackgroundColor] = useState(
+    localStorage.getItem('backgroundColor') || '#ffffff'
+  ); // Retrieve background color from local storage, default to white if not set
+
+  // Function to change background color and save it in local storage
   const changeColor = (color) => {
     setBackgroundColor(color);
+    localStorage.setItem('backgroundColor', color); // Save color in local storage
   };
 
   return (

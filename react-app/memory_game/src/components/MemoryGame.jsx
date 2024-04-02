@@ -9,6 +9,9 @@ function MemoryGame() {
   const [points, setPoints] = useState(0);
   const [level, setLevel] = useState(1);
   const [hasStarted, setHasStarted] = useState(false); // Add hasStarted state
+  const [backgroundColor, setBackgroundColor] = useState(
+    localStorage.getItem('backgroundColor') || '#ffffff'
+  ); // Retrieve background color from local storage, default to white if not set
 
   useEffect(() => {
     generateCards();
@@ -19,6 +22,10 @@ function MemoryGame() {
       goToNextLevel();
     }
   }, [solved, hasStarted]); // Transition to next level when all cards are solved
+
+  useEffect(() => {
+    localStorage.setItem('backgroundColor', backgroundColor); // Store selected background color in local storage
+  }, [backgroundColor]); // Update local storage when backgroundColor changes
 
   const generateCards = () => {
     const faces = ['🍎', '🍌', '🍒', '🍇', '🍓', '🍍', '🍑', '🍉', '🍏', '🍆'];
@@ -90,7 +97,7 @@ function MemoryGame() {
   };
 
   return (
-    <div className={'MemoryGame'}>
+    <div className={'MemoryGame'} style={{ backgroundColor }}>
       <div className={'gameInfo'}>
         <div>Level: {level}</div>
         <div>Points: {points}</div>

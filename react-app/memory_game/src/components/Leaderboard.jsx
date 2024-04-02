@@ -1,10 +1,11 @@
-// Leaderboard.js
-
 import React, { useState, useEffect } from 'react';
 import '../style/Leaderboard.css';
 
 function Leaderboard() {
   const [players, setPlayers] = useState([]);
+  const [backgroundColor, setBackgroundColor] = useState(
+    localStorage.getItem('backgroundColor') || '#ffffff'
+  ); // Retrieve background color from local storage, default to white if not set
 
   // Example data for demonstration
   useEffect(() => {
@@ -24,7 +25,7 @@ function Leaderboard() {
   }, []);
 
   return (
-    <div>
+    <div className="leaderboard-container" style={{ backgroundColor }}>
       <h1>Leaderboard</h1>
       <ol>
         {players.map((player, index) => (
