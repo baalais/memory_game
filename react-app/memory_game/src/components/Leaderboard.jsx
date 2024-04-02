@@ -26,14 +26,16 @@ function Leaderboard() {
 
   return (
     <div className="leaderboard-container" style={{ backgroundColor }}>
-      <h1>Leaderboard</h1>
-      <ol>
-        {players.map((player, index) => (
-          <li key={index}>
-            {player.name}: {player.score} points
-          </li>
-        ))}
-      </ol>
+      <div className="leaderboard-content">
+        <h1>Leaderboard</h1>
+        <ol>
+          {players.map((player, index) => (
+            <li key={index}>
+              {player.name}: {player.score} points
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }

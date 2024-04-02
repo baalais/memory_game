@@ -1,6 +1,4 @@
-// ProfileSettings.jsx
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../style/ProfileSettings.css';
 
 function ProfileSettings() {
@@ -11,6 +9,13 @@ function ProfileSettings() {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(true);
   const [isFormValid, setIsFormValid] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState(
+    localStorage.getItem('backgroundColor') || '#ffffff'
+  );
+
+  useEffect(() => {
+    localStorage.setItem('backgroundColor', backgroundColor);
+  }, [backgroundColor]);
 
   const handleFullNameChange = (event) => {
     setFullName(event.target.value);
@@ -54,36 +59,38 @@ function ProfileSettings() {
 
   return (
     <div className="ProfileSettings">
-      <h2>Edit Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={fullName}
-          onChange={handleFullNameChange}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <input
-          type="password"
-          placeholder="New Password"
-          value={password}
-          onChange={handlePasswordChange}
-          className={!isPasswordValid ? 'invalid' : ''}
-        />
-        <input
-          type="password"
-          placeholder="Confirm New Password"
-          value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          className={!isConfirmPasswordValid ? 'invalid' : ''}
-        />
-        <button type="submit" disabled={!isFormValid}>Save Changes</button>
-      </form>
+      <div className="Profile-background" style={{ backgroundColor }}>
+        <h2>Edit Profile</h2>
+        <form className="Profile-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={handleFullNameChange}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <input
+            type="password"
+            placeholder="New Password"
+            value={password}
+            onChange={handlePasswordChange}
+            className={!isPasswordValid ? 'invalid' : ''}
+          />
+          <input
+            type="password"
+            placeholder="Confirm New Password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            className={!isConfirmPasswordValid ? 'invalid' : ''}
+          />
+          <button type="submit" disabled={!isFormValid} className="transparent">Save Changes</button>
+        </form>
+      </div>
     </div>
   );
 }

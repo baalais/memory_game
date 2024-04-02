@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../style/ColorPage.css';
 
 const ColorPage = () => {
@@ -6,21 +6,25 @@ const ColorPage = () => {
     localStorage.getItem('backgroundColor') || '#ffffff'
   ); // Retrieve background color from local storage, default to white if not set
 
-  // Function to change background color and save it in local storage
-  const changeColor = (color) => {
-    setBackgroundColor(color);
-    localStorage.setItem('backgroundColor', color); // Save color in local storage
+  // Function to handle color change and save it in local storage
+  const handleColorChange = (e) => {
+    setBackgroundColor(e.target.value);
+    localStorage.setItem('backgroundColor', e.target.value); // Save color in local storage
   };
+
+  useEffect(() => {
+    localStorage.setItem('backgroundColor', backgroundColor);
+  }, [backgroundColor]);
 
   return (
     <div className="color-page" style={{ backgroundColor }}>
       <h1>Maini fona krāsu</h1>
-      <div className="color-buttons">
-        <button onClick={() => changeColor('#ffffff')}>Balta</button>
-        <button onClick={() => changeColor('#000000')}>Melna</button>
-        <button onClick={() => changeColor('#ff0000')}>Sarkana</button>
-        <button onClick={() => changeColor('#00ff00')}>Zaļa</button>
-        <button onClick={() => changeColor('#0000ff')}>Zila</button>
+      <div className="color-selector">
+        <input
+          type="color"
+          value={backgroundColor}
+          onChange={handleColorChange}
+        />
       </div>
     </div>
   );

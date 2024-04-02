@@ -97,8 +97,8 @@ function MemoryGame() {
   };
 
   return (
-<<<<<<< Updated upstream
     <div className={'MemoryGame'} style={{ backgroundColor }}>
+      <div className={'fullscreen-background'}></div>
       <div className={'gameInfo'}>
         <div>Level: {level}</div>
         <div>Points: {points}</div>
@@ -113,34 +113,12 @@ function MemoryGame() {
             <div className={'card-inner'}>
               <div className={'card-front'}>?</div>
               <div className={'card-back'}>{flipped[index] || solved.includes(index) ? card : '?'}</div>
-=======
-    <div className={styles.MemoryGame}>
-      <div className={styles['game-info']}>
-        <div>Level: {level}</div>
-        <div>Points: {points}</div>
-      </div>
-      <div className={styles.cards}>
-        {cards.map((card, index) => (
-          <div
-            key={index}
-            className={`${styles.card} ${flipped[index] || solved.includes(index) ? styles.flipped : ''}`}
-            onClick={() => handleCardClick(index)}
-          >
-            <div className={styles['card-inner']}>
-              <div className={styles['card-front']}>?</div>
-              <div className={styles['card-back']}>{flipped[index] || solved.includes(index) ? card : '?'}</div>
->>>>>>> Stashed changes
             </div>
           </div>
         ))}
       </div>
     </div>
   );
-  
-  
 }
-  
-  
-
 
 export default MemoryGame;

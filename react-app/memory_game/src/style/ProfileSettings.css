@@ -1,53 +1,88 @@
-/* ProfileSettings.css */
+
+.ProfileSettings h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #333;
+}
+
+.ProfileSettings .form-group {
+  margin-bottom: 20px;
+}
+
+.ProfileSettings input {
+  width: calc(100% - 24px); /* Subtract the total horizontal padding (12px on each side) */
+  margin-bottom: 10px; /* Add margin-bottom to create space between input fields */
+  padding: 12px; /* Keep padding as desired */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+
+.ProfileSettings .invalid {
+  border-color: red;
+}
+
+.ProfileSettings button {
+  display: block;
+  width: 100%;
+  padding: 14px 28px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ProfileSettings button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.ProfileSettings button:hover {
+  background-color: #0056b3;
+}
 
 .ProfileSettings {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .ProfileSettings h2 {
-    margin-bottom: 30px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .ProfileSettings input {
-    display: block;
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-  }
-  
-  .ProfileSettings .invalid {
-    border-color: red;
-  }
-  
-  .ProfileSettings button {
-    display: block;
-    width: 100%;
-    padding: 14px 28px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .ProfileSettings button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  .ProfileSettings button:hover {
-    background-color: #0056b3;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Profile-background {
+  background-color: rgba(245, 245, 245, 0.8); /* Adjust the alpha value for transparency */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column; /* Align items in a column */
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Add padding to create space around input fields */
+}
+
+
+.ProfileCard {
+  margin-top: 20px; /* Adjust margin to create space between "Edit Profile" and input fields */
+}
+
+.Profile-form {
+  background-color: rgba(245, 245, 245, 0.8);
+  width: 50vw;
+  max-width: fit-content;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+.ProfileSettings .transparent {
+  background-color: transparent;
+  color: #007bff; /* Set text color for the button */
+  border: 1px solid #007bff; /* Add border for better visibility */
+}
+
+.ProfileSettings .transparent:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Change background color on hover */
+}
+

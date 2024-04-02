@@ -1,86 +1,50 @@
-<<<<<<< Updated upstream
 /* MemoryGame.css */
-
 
 .MemoryGame {
   display: flex;
   flex-direction: column;
-  flex-wrap:wrap;
   align-items: center;
   justify-content: center;
   margin: auto;
-  width:fit-content;
+  width: 100%; /* Adjusted width to fit the viewport */
   min-height: 100vh;
-  background-image: linear-gradient(to bottom right, #666160, #211512);
-  color: #ffffff;
-  padding: 20px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-  text-align: center; /* Centrēt tekstu */
+  position: relative; /* Added position relative for fullscreen background */
+}
+
+.fullscreen-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom right, rgba(102, 97, 96, 0.8), rgba(33, 21, 18, 0.8)); /* Adjusted background color with alpha for transparency */
+  z-index: -1; /* Ensure it's behind other content */
 }
 
 .gameInfo {
+  position: relative; /* Added position relative to place it above the background */
   margin-bottom: 20px;
   font-size: 24px;
+  z-index: 1; /* Ensure it's above the background */
 }
 
-=======
-/* MemoryGame container */
-.MemoryGame {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5; /* Light gray background */
-}
-
-/* Game information */
-.game-info {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333; /* Dark text color */
-  text-align: center;
-}
-
-/* Cards container */
->>>>>>> Stashed changes
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-<<<<<<< Updated upstream
-  width: 400px;
+  max-width: 400px;
+  z-index: 1; /* Ensure it's above the background */
 }
 
 .card {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   perspective: 1000px;
   margin: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  font-size: 3vw;
-  border-radius: 8px; /* Add border radius for a rounded look */
-}
-
-=======
-  max-width: 80vw; /* Adjusted maximum width */
-}
-
-/* Individual card */
-.card {
-  width: 12vw; /* Adjusted card width */
-  height: 12vw; /* Adjusted card height */
-  margin: 10px; /* Spacing between cards */
-  position: relative; /* Added position */
-  perspective: 1000px; /* Added perspective for 3D effect */
 }
 
 /* Card inner */
->>>>>>> Stashed changes
 .card-inner {
   width: 100%;
   height: 100%;
@@ -88,16 +52,11 @@
   transform-style: preserve-3d;
 }
 
-<<<<<<< Updated upstream
-=======
-/* Flipped card */
->>>>>>> Stashed changes
+.card:hover .card-inner,
 .card.flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-<<<<<<< Updated upstream
-.card .card-inner .card-front,
 .card .card-inner .card-back {
   width: 100%;
   height: 100%;
@@ -107,59 +66,34 @@
   justify-content: center;
   align-items: center;
   font-size: 24px;
-}
-
-.card .card-inner .card-back {
   transform: rotateY(180deg);
 }
 
-.card-front {
-  background-color: #fafafa; /* Set front face background color */
-}
-
-.card-back {
-  background-color: #424242; /* Set back face background color */
-  color: #ffffff; /* Set text color for card back */
-}
-
-=======
+/* Front and back of the card */
 /* Front and back of the card */
 .card-front,
 .card-back {
   width: 100%;
   height: 100%;
-  position: absolute; /* Added position */
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5vw; /* Adjusted font size */
+  font-size: 2.5vw;
   border-radius: 8px;
-  background-color: #f0f0f0; /* Light background color */
-  color: #333; /* Dark text color */
+  background-color: rgba(240, 240, 240, 0.8); /* Adjusted background color with alpha for transparency */
+  color: #333;
   backface-visibility: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Back of the card */
-.card-back {
-  transform: rotateY(180deg); /* Initially hidden */
-}
 
 /* Solved card */
->>>>>>> Stashed changes
 .card.solved .card-inner {
   pointer-events: none;
 }
 
-<<<<<<< Updated upstream
 .points {
   font-size: 20px;
   margin-top: 20px;
-=======
-/* Points display */
-.points {
-  font-size: 20px;
-  margin-top: 20px;
-  color: #333; /* Dark text color */
->>>>>>> Stashed changes
 }

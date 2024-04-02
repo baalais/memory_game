@@ -1,34 +1,33 @@
 .Header {
-    background-color: #333; /* Main background color */
-    padding: 10px 0; /* Add padding to top and bottom */
-    width: 100%; /* Full width */
-    top: 0; /* Stick to the top */
-    z-index: 999; /* Ensure it stays on top of other elements */
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Align items to the start and end of header */
-    align-items: center; /* Center align vertically */
-  }
-  
-  .Header h1 {
-    color: #fff; /* Text color */
-    margin-left: 20px; /* Add margin to the left */
-  }
-  
-  .Header-buttons {
-    margin-right: 20px; /* Add margin to the right */
-  }
-  
-  .Header-buttons button {
-    background-color: transparent; /* Transparent background */
-    border: none; /* Remove border */
-    color: #fff; /* Text color */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Bold font weight */
-    cursor: pointer; /* Change cursor on hover */
-    margin-left: 10px; /* Add margin between buttons */
-  }
-  
-  .Header-buttons button:hover {
-    color: #ffcc00; /* Change color on hover */
-  }
-  
+  background-color: rgba(51, 51, 51, 0.9); /* Main background color with 90% opacity */
+  padding: 10px 0; /* Add padding to top and bottom */
+  width: 100%; /* Full width */
+  top: 0; /* Stick to the top */
+  z-index: 999; /* Ensure it stays on top of other elements */
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Align items to the start and end of header */
+  align-items: center; /* Center align vertically */
+}
+
+.Header h1 {
+  color: #fff; /* Text color */
+  margin-left: 20px; /* Add margin to the left */
+}
+
+.Header-buttons {
+  margin-right: 20px; /* Add margin to the right */
+}
+
+.Header-buttons button {
+  background-color: transparent; /* Transparent background */
+  border: none; /* Remove border */
+  color: #fff; /* Text color */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold font weight */
+  cursor: pointer; /* Change cursor on hover */
+  margin-left: 10px; /* Add margin between buttons */
+}
+
+.Header-buttons button:hover {
+  color: #ffcc00; /* Change color on hover */
+}
