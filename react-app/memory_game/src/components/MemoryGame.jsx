@@ -90,13 +90,14 @@ function MemoryGame() {
   };
 
   const getCardClass = (index) => {
-    let className = style.card; // Use CSS module for card styles
-    if (flipped[index]) className += ` ${style.flipped}`; // Use CSS module for flipped card styles
-    if (solved.includes(index)) className += ` ${style.solved}`; // Use CSS module for solved card styles
+    let className = styles.card; // Use CSS module for card styles
+    if (flipped[index]) className += ` ${styles.flipped}`; // Use CSS module for flipped card styles
+    if (solved.includes(index)) className += ` ${styles.solved}`; // Use CSS module for solved card styles
     return className;
   };
 
   return (
+<<<<<<< Updated upstream
     <div className={'MemoryGame'} style={{ backgroundColor }}>
       <div className={'gameInfo'}>
         <div>Level: {level}</div>
@@ -112,6 +113,23 @@ function MemoryGame() {
             <div className={'card-inner'}>
               <div className={'card-front'}>?</div>
               <div className={'card-back'}>{flipped[index] || solved.includes(index) ? card : '?'}</div>
+=======
+    <div className={styles.MemoryGame}>
+      <div className={styles['game-info']}>
+        <div>Level: {level}</div>
+        <div>Points: {points}</div>
+      </div>
+      <div className={styles.cards}>
+        {cards.map((card, index) => (
+          <div
+            key={index}
+            className={`${styles.card} ${flipped[index] || solved.includes(index) ? styles.flipped : ''}`}
+            onClick={() => handleCardClick(index)}
+          >
+            <div className={styles['card-inner']}>
+              <div className={styles['card-front']}>?</div>
+              <div className={styles['card-back']}>{flipped[index] || solved.includes(index) ? card : '?'}</div>
+>>>>>>> Stashed changes
             </div>
           </div>
         ))}
