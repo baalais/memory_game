@@ -70,7 +70,6 @@
 }
 
 /* Front and back of the card */
-/* Front and back of the card */
 .card-front,
 .card-back {
   width: 100%;
@@ -87,7 +86,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 /* Solved card */
 .card.solved .card-inner {
   pointer-events: none;
@@ -96,4 +94,15 @@
 .points {
   font-size: 20px;
   margin-top: 20px;
+}
+
+/* Game over message styling */
+.gameOverMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

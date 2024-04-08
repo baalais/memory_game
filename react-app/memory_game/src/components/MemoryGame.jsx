@@ -126,7 +126,29 @@ function MemoryGame() {
   }, [timer]);
 
   if (gameOver) {
-    return <div>Game Over! Your score is: {points}</div>; // Display game over message and score
+    // Inside the MemoryGame component's return statement
+return (
+  <div className={'MemoryGame'} style={{ backgroundColor }}>
+    <div className={'fullscreen-background'}></div>
+    {gameOver && (
+      <div className="gameOverMessage">
+        Game Over! Your score is: {points}
+      </div>
+    )}
+    {!gameOver && (
+      <div className={'gameInfo'}>
+        <div>Timer: {timer}</div>
+        <div>Level: {level}</div>
+        <div>Points: {points}</div>
+      </div>
+    )}
+    <div className={'cards'}>
+      {/* Render cards */}
+    </div>
+  </div>
+);
+
+     // Display game over message and score
   }
 
   return (
