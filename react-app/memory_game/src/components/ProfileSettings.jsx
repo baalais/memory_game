@@ -6,9 +6,7 @@ function ProfileSettings() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isPasswordValid, setIsPasswordValid] = useState(true);
-  const [isConfirmPasswordValid, setIsConfirmPasswordValid] = useState(true);
-  const [isFormValid, setIsFormValid] = useState(false);
+  const [message, setMessage] = useState('');
   const [backgroundColor, setBackgroundColor] = useState(
     localStorage.getItem('backgroundColor') || '#ffffff'
   );
@@ -26,35 +24,43 @@ function ProfileSettings() {
   };
 
   const handlePasswordChange = (event) => {
-    const newPassword = event.target.value;
-    setPassword(newPassword);
-
-    // Simple password validation
-    const isValid = newPassword.length >= 6;
-    setIsPasswordValid(isValid);
+    setPassword(event.target.value);
   };
 
   const handleConfirmPasswordChange = (event) => {
-    const newPassword = event.target.value;
-    setConfirmPassword(newPassword);
-
-    // Confirm password validation
-    const isValid = newPassword === password;
-    setIsConfirmPasswordValid(isValid);
+    setConfirmPassword(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Check if all fields are valid
-    const isFormValid = isPasswordValid && isConfirmPasswordValid;
-    setIsFormValid(isFormValid);
+    // Check if all fields are empty
+    if (!fullName && !email && !password && !confirmPassword) {
+      setMessage('Please change at least something.');
+      return;
+    }
+
+    // Email validation
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setMessage('Please enter a valid email.');
+      return;
+    }
+
+    // Password validation
+    if (password && password.length < 8) {
+      setMessage('Password must be at least 8 characters long.');
+      return;
+    }
+
+    // Confirm password validation
+    if (password && (!confirmPassword || confirmPassword !== password)) {
+      setMessage('Passwords do not match.');
+      return;
+    }
 
     // If form is valid, submit data
-    if (isFormValid) {
-      // Perform profile update actions
-      console.log('Profile updated successfully!');
-    }
+    console.log('Profile updated successfully!');
+    setMessage('Profile updated successfully!');
   };
 
   return (
@@ -79,17 +85,16 @@ function ProfileSettings() {
             placeholder="New Password"
             value={password}
             onChange={handlePasswordChange}
-            className={!isPasswordValid ? 'invalid' : ''}
           />
           <input
             type="password"
             placeholder="Confirm New Password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
-            className={!isConfirmPasswordValid ? 'invalid' : ''}
           />
-          <button type="submit" disabled={!isFormValid} className="transparent">Save Changes</button>
+          <button type="submit" className="transparent">Save Changes</button>
         </form>
+        {message && <p className="message">{message}</p>}
       </div>
     </div>
   );

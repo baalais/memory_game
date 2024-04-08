@@ -12,6 +12,8 @@ function MemoryGame() {
   const [backgroundColor, setBackgroundColor] = useState(
     localStorage.getItem('backgroundColor') || '#ffffff'
   ); // Retrieve background color from local storage, default to white if not set
+  const [timer, setTimer] = useState(60);
+  const [gameOver, setGameOver] = useState(false); 
 
   useEffect(() => {
     generateCards();
@@ -80,9 +82,23 @@ function MemoryGame() {
       }
     }
   };
-  
-  
 
+  useEffect(() => {
+    let interval = null;
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [timer]);
+
+  useEffect(() => {
+    setTimer(60); // Reset timer when level changes
+  }, [level]);
+  
   const goToNextLevel = () => {
     setLevel((prevLevel) => prevLevel + 1); // Increment the level
     setSolved([]); // Reset the solved cards
@@ -96,10 +112,28 @@ function MemoryGame() {
     return className;
   };
 
+  useEffect(() => {
+    let interval = null;
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+      setGameOver(true); // End the game when timer reaches 0
+    }
+    return () => clearInterval(interval);
+  }, [timer]);
+
+  if (gameOver) {
+    return <div>Game Over! Your score is: {points}</div>; // Display game over message and score
+  }
+
   return (
     <div className={'MemoryGame'} style={{ backgroundColor }}>
       <div className={'fullscreen-background'}></div>
       <div className={'gameInfo'}>
+      <div>Timer: {timer}</div>
         <div>Level: {level}</div>
         <div>Points: {points}</div>
       </div>
